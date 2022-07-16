@@ -4,7 +4,7 @@ require_once 'D:\XAMPP\htdocs\Atividade05PHP-OO\Class\Funcionario.php';
 
 class SalarioHorista
 {
-    protected $horas, $dias, $valor;
+    public $horas, $dias, $valor;
     protected $salarioHora;
     protected Funcionario $fun;
 
@@ -12,15 +12,18 @@ class SalarioHorista
     {
         $this->fun = new Funcionario($nomeEmpre, $cpfEmpre, $inssEmpre, $idEmpre);
 
-        if ($horasTraba) {
+        if (is_float($horasTraba)) {
             $this->sethoras($horasTraba);
         }
-        if ($diasUteis > 0) {
+        if (is_int($diasUteis > 0)) {
             $this->setdias($diasUteis);
         }
-        if ($valorHora >= 0) {
+        if (is_float($valorHora >= 0)) {
             $this->setvalor($valorHora);
         }
+        $this->horas = $horasTraba;
+        $this->dias = $diasUteis;
+        $this->valor = $valorHora;
     }
 
     public  function sethoras($horasTraba)
@@ -60,9 +63,9 @@ class SalarioHorista
     {
         echo $this->fun->exibirFuncionario();
         echo  "<strong><br><br>*** Funcionário Horista ***</strong>";
-        echo  "<br><br>Valor Por Hora R$: " . $this->getvalor() . "<br>";
-        echo  "Horas Trabalhada: " . $this->gethoras() . " Horas<br>";
-        echo  "Dias úteis Trabalhado: " . $this->getdias() . " Dias <br>";
-        echo  "Salário Funcionário R$: " . $this->calculoSalarioHorista();
+        echo  "<br><br>Valor Por Hora R$/h: " . $this->valor . " <br>";
+        echo  "Horas Trabalhada: " . $this->horas . " Horas<br>";
+        echo  "Dias úteis Trabalhado: " . $this->dias . " Dias <br>";
+        echo  "Salário Funcionário R$/h: " . number_format($this->calculoSalarioHorista(), 2);
     }
 }

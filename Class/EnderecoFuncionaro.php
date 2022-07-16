@@ -22,7 +22,6 @@ class EnderecoFuncionario
         if (is_string($estadoEmpre)) {
             $this->setestado($estadoEmpre);
         }
-        // print "{$this->exibirEndereco()}";
     }
 
     public function setnumResid($numResidEmpre)

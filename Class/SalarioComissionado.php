@@ -12,10 +12,10 @@ class SalarioComissionado
     {
         $this->fun = new Funcionario($nomeEmpre, $cpfEmpre, $inssEmpre, $idEmpre);
 
-        if ($valorVendas) {
+        if (is_float($valorVendas)) {
             $this->setvalor($valorVendas);
         }
-        if ($valorComissao) {
+        if (is_float($valorComissao)) {
             $this->setcomissao($valorComissao);
         }
     }
@@ -49,8 +49,8 @@ class SalarioComissionado
     {
         echo $this->fun->exibirFuncionario();
         echo "<strong><br><br>*** Funcionário Comissionado ***</strong>";
-        echo "<br><br>Vendas do Funcionário R$: " . $this->getvalor() . "<br>";
-        echo "Valor da Comissão: " . $this->getcomissao() . " %<br>";
-        echo "Comissão do Funcionário R$: " . $this->calculoComissao();
+        echo "<br><br>Vendas do Funcionário R$: " . number_format($this->getvalor(), 2) . "<br>";
+        echo "Valor da Comissão: " . $this->getcomissao() * 100 . " %<br>";
+        echo "Comissão do Funcionário R$: " . number_format($this->calculoComissao(), 2);
     }
 }

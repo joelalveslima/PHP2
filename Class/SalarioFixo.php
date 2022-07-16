@@ -6,13 +6,14 @@ require_once 'D:\XAMPP\htdocs\Atividade05PHP-OO\Class\Funcionario.php';
 
 class SalarioFixo
 {
-    protected $salario;
+    public $salario;
     protected Funcionario $fun;
 
     public function __construct($nomeEmpre, $cpfEmpre, $inssEmpre, $idEmpre, $salarioEmpre)
     {
         $this->fun = new Funcionario($nomeEmpre, $cpfEmpre, $inssEmpre, $idEmpre);
-        if (is_double($salarioEmpre)) {
+
+        if (is_float($salarioEmpre)) {
             $this->setsalario($salarioEmpre);
         }
     }
@@ -42,6 +43,6 @@ class SalarioFixo
     {
         echo $this->fun->exibirFuncionario();
         echo "<strong><br><br>*** Funcionário Salário Fixo ***<br></strong>";
-        echo "<br>Salário Funcionário R$: " . $this->calculoSalarioFixo() . " Mensal";
+        echo "<br>Salário Funcionário R$: " . number_format($this->calculoSalarioFixo(), 2);
     }
 }

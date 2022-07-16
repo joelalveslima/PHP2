@@ -15,7 +15,7 @@ class SalarioComissionadoPisoSalarial
         $this->fun = new Funcionario($nomeEmpre, $cpfEmpre, $inssEmpre, $idEmpre);
         $this->comi = new SalarioComissionado($nomeEmpre, $cpfEmpre, $inssEmpre, $idEmpre, $valorVendas, $valorComissao);
 
-        if ($pisoSalario) {
+        if (is_float($pisoSalario)) {
             $this->setpiso($pisoSalario);
         }
     }
@@ -39,10 +39,10 @@ class SalarioComissionadoPisoSalarial
     {
         echo $this->fun->exibirFuncionario();
         echo "<strong><br><br>*** Funcionário Comissionado Com Piso Salárial ***</strong>";
-        echo "<br><br>Piso Salárial do Funcionário R$: " . $this->getpiso() . " Mensal<br>";
-        echo "Total de venda do Funcionário R$: " . $this->comi->getvalor() . "<br>";
-        echo "Comissão do Funcionário: " . $this->comi->getcomissao() . " %<br>";
-        echo "Valor da Comissão R$: " . $this->comi->calculoComissao() . "<br>";
-        echo "Salário + Comissão R$: " . $this->calculoComissaoPiso();
+        echo "<br><br>Piso Salárial do Funcionário R$: " . number_format($this->getpiso(), 2) . " <br>";
+        echo "Total de venda do Funcionário R$: " . number_format($this->comi->getvalor(), 2) . "<br>";
+        echo "Comissão do Funcionário: " . $this->comi->getcomissao() * 100 . " %<br>";
+        echo "Valor da Comissão R$: " . number_format($this->comi->calculoComissao(), 2) . "<br>";
+        echo "Salário + Comissão R$: " . number_format($this->calculoComissaoPiso(), 2);
     }
 }
